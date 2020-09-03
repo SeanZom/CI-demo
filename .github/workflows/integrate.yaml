@@ -17,8 +17,11 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test --coverage
-      # Covert test coverage file to html
-      - run: genhtml coverage/lcov.info -o coverage/html
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - run: npm test
       # - name: Upload coverage to Codecov
       #   uses: codecov/codecov-action@v1
       #   with:
